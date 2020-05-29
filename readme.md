@@ -1,4 +1,4 @@
-# Freshdesk Service Provider for Laravel 5
+# Freshdesk Service Provider for Laravel 7
 
 [![Build Status](https://travis-ci.org/mpclarkson/freshdesk-laravel.svg?branch=master)](https://travis-ci.org/mpclarkson/freshdesk-laravel)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mpclarkson/freshdesk-laravel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mpclarkson/freshdesk-laravel/?branch=master)
@@ -6,7 +6,7 @@
 [![Packagist](https://img.shields.io/packagist/v/mpclarkson/freshdesk-php-sdk.svg)](https://packagist.org/packages/mpclarkson/freshdesk-php-sdk)
 
 This is a service provider for interacting with the Freshdesk API v2 via the 
-[freshdesk-php-sdk](https://github.com/mpclarkson/freshdesk-php-sdk) in Laravel and Lumen applications.
+[freshdesk-php-sdk](https://github.com/mpclarkson/freshdesk-php-sdk) in Laravel 7.x applications.
 
 ## Installation
 
@@ -22,31 +22,26 @@ Add `mpclarkson/freshdesk-laravel` to your **composer.json** file:
 }
 ```
 
+Override with repository fork:
+
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/CodiumAU/freshdesk-laravel"
+        }
+    ]
+}
+```
+
 Then run:
  
  ```sh
  composer update
  ```
 
-You must then register the provider in your application.
-
-Register the provider in the `providers` key in your `config/app.php`:
-
-```php
-    'providers' => array(
-        // ...
-        Mpclarkson\Laravel\Freshdesk\FreshdeskServiceProvider::class,
-    )
-```
-
-Then add the Freshdesk facade alias in the `aliases` key in your `config/app.php`:
-
-```php
-    'aliases' => array(
-        // ...
-        'Freshdesk' => Mpclarkson\Laravel\Freshdesk\FreshdeskFacade::class,
-    )
-```
+ Service provider and facade will be auto-discovered by Laravel.
 
 ## Configuration
 
@@ -73,7 +68,6 @@ In a controller you can access Freshdesk resource
 as follows: 
 
 ```php
-
 //Contacts
 $contacts = Freshdesk::contacts()->update($contactId, $data);
 

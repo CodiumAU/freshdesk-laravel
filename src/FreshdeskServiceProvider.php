@@ -3,8 +3,6 @@
 namespace Mpclarkson\Laravel\Freshdesk;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\Application as LaravelApplication;
-use Laravel\Lumen\Application as LumenApplication;
 
 class FreshdeskServiceProvider extends ServiceProvider
 {
@@ -17,11 +15,10 @@ class FreshdeskServiceProvider extends ServiceProvider
     {
         $source = dirname(__DIR__).'/src/config/freshdesk.php';
 
-        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
+        if ($this->app->runningInConsole()) {
             $this->publishes([$source => config_path('freshdesk.php')]);
-        } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('freshdesk');
         }
+
         $this->mergeConfigFrom($source, 'freshdesk');
     }
 

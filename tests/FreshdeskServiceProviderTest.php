@@ -2,12 +2,12 @@
 
 namespace Mpclarkson\Laravel\Freshdesk\Test;
 
-use Illuminate\Support\Facades\App;
-use Mpclarkson\Laravel\Freshdesk\FreshdeskFacade as Freshdesk;
-use Mpclarkson\Laravel\Freshdesk\FreshdeskServiceProvider;
+use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
+use Mpclarkson\Laravel\Freshdesk\FreshdeskServiceProvider;
+use Mpclarkson\Laravel\Freshdesk\FreshdeskFacade as Freshdesk;
 
-abstract class FreshdeskServiceProviderTest extends \PHPUnit_Framework_TestCase
+abstract class FreshdeskServiceProviderTest extends TestCase
 {
 
     public function testServiceNameIsProvided()
